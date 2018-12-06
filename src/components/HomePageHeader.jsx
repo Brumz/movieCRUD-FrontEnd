@@ -6,6 +6,7 @@ class HomePageHeader extends Component {
     return (
       <nav className="navBar">
         <a>Ben's Movie Ratings</a>
+        <a>See if you opinions are correct!</a>
       </nav>
     );
   }
