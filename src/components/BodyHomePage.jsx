@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import "../App.css";
+import HomePageHeader from "./HomePageHeader";
+import { Link } from "react-router-dom";
 
 class BodyHomePage extends Component {
   render() {
-    const movies = this.props.movies.map(movie => {
-      return (
-        <li>
-          {movie.title} {movie.poster}
-        </li>
-      );
-    });
     return (
-      <div className="bodyHome">
-        <div className="movieLi">{movies}</div>
+      <div>
+        <HomePageHeader />
+        <div className="bodyHome">
+          <div className="moviesLink">
+            <Link to="/movies">
+              <button className="movieBtn" onClick={this.props.movies}>
+                Go To Movies
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

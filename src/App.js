@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
-import HomePageHeader from "./components/HomePageHeader";
 import BodyHomePage from "./components/BodyHomePage";
+import IndexPage from "./components/IndexPage";
 
 class App extends Component {
   constructor() {
@@ -24,10 +25,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <HomePageHeader />
-        <BodyHomePage movies={this.state.movies} />
-      </div>
+      <>
+        <div className="App" />
+        <BrowserRouter>
+          <div className="routes">
+            <Route
+              path="/"
+              exact
+              render={() => <BodyHomePage movies={this.state.movies} />}
+            />
+            <Route
+              path="/movies"
+              render={() => <IndexPage movies={this.state.movies} />}
+            />
+          </div>
+        </BrowserRouter>
+      </>
     );
   }
 }
