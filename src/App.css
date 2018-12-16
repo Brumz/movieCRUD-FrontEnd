@@ -1,8 +1,8 @@
 .navBar {
   background-color: black;
-  height: 3rem;
+  height: 5rem;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-family: 'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
@@ -32,4 +32,53 @@
   border: .5rem solid white;
   border-radius: 2rem;
   margin-top: 2rem;
+}
+
+.table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: lightgray;
+}
+
+.movieList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: lightgray;
+
+}
+
+.hello {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.movieYear {
+  padding-right: 5rem;
+  text-align: center;
+}
+
+.newMovie {
+  background-color: darkgrey;
+  height: 3rem;
+  width: 7rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.newBtn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+
+}
+
+.displayMovies {
+  background-color: lightgray;
+  height: 100vh;
 }

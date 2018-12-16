@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import BodyHomePage from "./components/BodyHomePage";
 import IndexPage from "./components/IndexPage";
+import Addmovie from "./components/Addmovie";
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class App extends Component {
               path="/movies"
               render={() => <IndexPage movies={this.state.movies} />}
             />
+            <Route path="/add" render={() => <Addmovie />} />
           </div>
         </BrowserRouter>
       </>
