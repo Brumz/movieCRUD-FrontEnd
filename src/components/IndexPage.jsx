@@ -33,7 +33,7 @@ const IndexPage = props => {
         <h3>Title: </h3>
         <h3>Director: </h3>
         <h3>Year: </h3>
-        <h3>Raing: </h3>
+        <h3>Rating: </h3>
       </div>
       <div className="movies">{movies}</div>
     </div>
