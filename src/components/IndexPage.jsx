@@ -18,6 +18,9 @@ const IndexPage = props => {
         <div className="movieRating">
           <h3>{movie.rating}</h3>
         </div>
+        <div>
+          <img className="moviePoster" src={movie.poster} />
+        </div>
       </div>
     );
   });
@@ -26,7 +29,7 @@ const IndexPage = props => {
       <HomePageHeader />
       <div className="newBtn">
         <Link to="/add">
-          <button className="newMovie">New Movie</button>
+          <button className="newMovie">Add Movie</button>
         </Link>
       </div>
       <div className="table">
@@ -34,6 +37,7 @@ const IndexPage = props => {
         <h3>Director: </h3>
         <h3>Year: </h3>
         <h3>Rating: </h3>
+        <h3>Poster: </h3>
       </div>
       <div className="movies">{movies}</div>
     </div>

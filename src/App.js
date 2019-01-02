@@ -8,9 +8,15 @@ import Addmovie from "./components/Addmovie";
 class App extends Component {
   constructor() {
     super();
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      movies: []
+      movies: [],
+      title: "",
+      director: "",
+      year: undefined,
+      rating: undefined,
+      poster: ""
     };
   }
 
@@ -23,6 +29,31 @@ class App extends Component {
       movies: myJson
     });
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const newMovie = {
+      title: this.state.title,
+      director: this.state.director,
+      year: this.state.year,
+      rating: this.state.rating,
+      poster: this.state.poster
+    };
+    fetch("https://movie-crud-project.herokuapp.com/movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newMovie)
+    });
+  };
+
+  newMovieInput = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
     return (
@@ -39,7 +70,15 @@ class App extends Component {
               path="/movies"
               render={() => <IndexPage movies={this.state.movies} />}
             />
-            <Route path="/add" render={() => <Addmovie />} />
+            <Route
+              path="/add"
+              render={() => (
+                <Addmovie
+                  newMovieInput={this.newMovieInput}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
+            />
           </div>
         </BrowserRouter>
       </>
