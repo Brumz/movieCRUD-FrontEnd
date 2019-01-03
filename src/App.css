@@ -8,7 +8,14 @@
   display: flex;
   flex-direction: column;
 }
-
+.homeLink {
+  text-decoration: none;
+  color: white;
+}
+.moviesLink {
+  text-decoration: none;
+  color: white;
+}
 .bodyHome {
   background-image: url("https://images.unsplash.com/photo-1507924538820-ede94a04019d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
   height: 100vh;
@@ -42,10 +49,9 @@
   align-items: flex-start;
   background-color: lightgray;
 }
-
-.movieYear {
-  display: flex;
-  flex-direction: column;
+.title {
+  text-decoration: lightgray;
+  color: black;
 }
 
 .newMovie {
@@ -56,6 +62,7 @@
   display: flex;
   justify-content: center;
   font-size: 1rem;
+  text-decoration: none;
 }
 
 .newBtn {
@@ -122,4 +129,16 @@ button:hover {
 .Btns {
   display: flex;
   flex-direction: column;
+}
+/* SINLGE MOVIE PAGE */
+
+.movieSelected {
+  display: flex;
+  justify-content: center;
+}
+
+.moviePosterSingle {
+  height: 40vh;
+  width: auto;
+  padding-bottom: 0.5rem;
 }

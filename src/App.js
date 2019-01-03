@@ -5,6 +5,7 @@ import BodyHomePage from "./components/BodyHomePage";
 import IndexPage from "./components/IndexPage";
 import Addmovie from "./components/Addmovie";
 import EditMovie from "./components/EditMovie";
+import MoviePage from "./components/MoviePage";
 
 class App extends Component {
   constructor() {
@@ -18,7 +19,7 @@ class App extends Component {
       year: undefined,
       rating: undefined,
       poster: "",
-      selected: 0
+      selected: undefined
     };
   }
 
@@ -47,7 +48,9 @@ class App extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newMovie)
-    });
+    })
+      .then(res => res.json())
+      .then(() => this.reload());
   };
 
   newMovieInput = e => {
@@ -60,11 +63,26 @@ class App extends Component {
   deleteMovie = e => {
     fetch(`https://movie-crud-project.herokuapp.com/movies/${e.target.id}`, {
       method: "DELETE"
-    });
+    }).then(() => this.reload());
   };
 
   movieSelected = e => {
     this.setState({ selected: e.target.id });
+  };
+  reload = () => {
+    fetch("https://movie-crud-project.herokuapp.com/movies")
+      .then(res => res.json())
+      .then(res =>
+        this.setState({
+          movies: res,
+          title: "",
+          director: "",
+          year: undefined,
+          rating: undefined,
+          poster: "",
+          selected: undefined
+        })
+      );
   };
 
   render() {
@@ -101,6 +119,16 @@ class App extends Component {
               path="/edit"
               render={() => (
                 <EditMovie
+                  movies={this.state.movies}
+                  selected={this.state.selected}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
+            />
+            <Route
+              path="/moviepage"
+              render={() => (
+                <MoviePage
                   movies={this.state.movies}
                   selected={this.state.selected}
                 />

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import HomePageHeader from "./HomePageHeader";
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,8 @@ const IndexPage = props => {
       <div id={movie.id}>
         <div className="movieList">
           <div className="movieTitle">
-            <Link to="/movie">
-              <h2> Title:</h2>
+            <h2> Title:</h2>
+            <Link to="/moviepage">
               <h3 onClick={props.movieSelected} id={movie.id}>
                 {movie.title}
               </h3>
@@ -25,7 +25,7 @@ const IndexPage = props => {
             <h2>Rating:</h2> <h3>{movie.rating}</h3>
           </div>
           <div>
-            <img className="moviePoster" src={movie.poster} />
+            <img className="moviePoster" src={movie.poster} alt="poster" />
           </div>
           <div className="Btns">
             <button
@@ -35,7 +35,9 @@ const IndexPage = props => {
             >
               Delete Movie
             </button>
-            <button className="editBtn">Edit Movie</button>
+            <Link to="/edit">
+              <button className="editBtn">Edit Movie</button>
+            </Link>
           </div>
         </div>
       </div>
