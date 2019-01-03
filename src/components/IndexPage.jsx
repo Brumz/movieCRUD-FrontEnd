@@ -5,21 +5,38 @@ import { Link } from "react-router-dom";
 const IndexPage = props => {
   const movies = props.movies.map(movie => {
     return (
-      <div className="movieList">
-        <div className="movieTitle">
-          <h2>{movie.title}</h2>
-        </div>
-        <div className="movieDirector">
-          <h3>{movie.director}</h3>
-        </div>
-        <div className="movieYear">
-          <h3>{movie.year}</h3>
-        </div>
-        <div className="movieRating">
-          <h3>{movie.rating}</h3>
-        </div>
-        <div>
-          <img className="moviePoster" src={movie.poster} />
+      <div id={movie.id}>
+        <div className="movieList">
+          <div className="movieTitle">
+            <Link to="/movie">
+              <h2> Title:</h2>
+              <h3 onClick={props.movieSelected} id={movie.id}>
+                {movie.title}
+              </h3>
+            </Link>
+          </div>
+          <div className="movieDirector">
+            <h2>Director:</h2> <h3>{movie.director}</h3>
+          </div>
+          <div className="movieYear">
+            <h2>Year:</h2> <h3>{movie.year}</h3>
+          </div>
+          <div className="movieRating">
+            <h2>Rating:</h2> <h3>{movie.rating}</h3>
+          </div>
+          <div>
+            <img className="moviePoster" src={movie.poster} />
+          </div>
+          <div className="Btns">
+            <button
+              className="deleteBtn"
+              id={movie.id}
+              onClick={props.deleteMovie}
+            >
+              Delete Movie
+            </button>
+            <button className="editBtn">Edit Movie</button>
+          </div>
         </div>
       </div>
     );
@@ -31,13 +48,6 @@ const IndexPage = props => {
         <Link to="/add">
           <button className="newMovie">Add Movie</button>
         </Link>
-      </div>
-      <div className="table">
-        <h3>Title: </h3>
-        <h3>Director: </h3>
-        <h3>Year: </h3>
-        <h3>Rating: </h3>
-        <h3>Poster: </h3>
       </div>
       <div className="movies">{movies}</div>
     </div>

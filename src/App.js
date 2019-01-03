@@ -4,6 +4,7 @@ import "./App.css";
 import BodyHomePage from "./components/BodyHomePage";
 import IndexPage from "./components/IndexPage";
 import Addmovie from "./components/Addmovie";
+import EditMovie from "./components/EditMovie";
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,8 @@ class App extends Component {
       director: "",
       year: undefined,
       rating: undefined,
-      poster: ""
+      poster: "",
+      selected: 0
     };
   }
 
@@ -55,6 +57,16 @@ class App extends Component {
     });
   };
 
+  deleteMovie = e => {
+    fetch(`https://movie-crud-project.herokuapp.com/movies/${e.target.id}`, {
+      method: "DELETE"
+    });
+  };
+
+  movieSelected = e => {
+    this.setState({ selected: e.target.id });
+  };
+
   render() {
     return (
       <>
@@ -68,7 +80,13 @@ class App extends Component {
             />
             <Route
               path="/movies"
-              render={() => <IndexPage movies={this.state.movies} />}
+              render={() => (
+                <IndexPage
+                  movies={this.state.movies}
+                  deleteMovie={this.deleteMovie}
+                  movieSelected={this.movieSelected}
+                />
+              )}
             />
             <Route
               path="/add"
@@ -76,6 +94,15 @@ class App extends Component {
                 <Addmovie
                   newMovieInput={this.newMovieInput}
                   handleSubmit={this.handleSubmit}
+                />
+              )}
+            />
+            <Route
+              path="/edit"
+              render={() => (
+                <EditMovie
+                  movies={this.state.movies}
+                  selected={this.state.selected}
                 />
               )}
             />
