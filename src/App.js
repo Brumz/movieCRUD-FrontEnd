@@ -115,7 +115,9 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(() => this.reload())
-        .then(() => (window.location = "http://localhost:3000/movies"));
+        .then(
+          () => (window.location = "http://http://rumz-imdb.surge.sh/movies")
+        );
     }
   };
 
