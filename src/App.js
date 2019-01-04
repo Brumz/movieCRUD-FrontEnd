@@ -51,7 +51,7 @@ class App extends Component {
       body: JSON.stringify(newMovie)
     })
       .then(res => res.json())
-      .then(() => (window.location = "http://localhost:3000/movies"));
+      .then(() => (window.location = "http://rumz-imdb.surge.sh/movies"));
   };
 
   newMovieInput = e => {
@@ -115,9 +115,7 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(() => this.reload())
-        .then(
-          () => (window.location = "http://http://rumz-imdb.surge.sh/movies")
-        );
+        .then(() => (window.location = "http://rumz-imdb.surge.sh/movies"));
     }
   };
 
