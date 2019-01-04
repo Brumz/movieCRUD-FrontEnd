@@ -36,7 +36,13 @@ const IndexPage = props => {
               Delete Movie
             </button>
             <Link to="/edit">
-              <button className="editBtn">Edit Movie</button>
+              <button
+                className="editBtn"
+                onClick={props.movieSelected}
+                id={movie.id}
+              >
+                Edit Movie
+              </button>
             </Link>
           </div>
         </div>

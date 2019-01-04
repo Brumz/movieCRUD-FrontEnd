@@ -7,19 +7,19 @@ const EditMovie = props => {
     if (movie.id == props.selected) {
       return (
         <div>
-          <img src={movie.poster} alt="poster" />
+          <HomePageHeader />
           <div>
-            <HomePageHeader />
             <div className="form">
-              <h1> Add Movie </h1>
-              <form className="formIn" onSubmit={props.handleSubmit}>
+              <img className="editPoster" src={movie.poster} alt="poster" />
+              <h1> Edit Movie </h1>
+              <form className="formIn" onSubmit={props.editMovie} id={movie.id}>
                 <label>
                   Title{" "}
                   <input
                     type="text"
                     name="title"
                     placeholder="Title"
-                    onChange={props.newMovieInput}
+                    onChange={props.new}
                   />
                 </label>
                 <label>
@@ -28,7 +28,7 @@ const EditMovie = props => {
                     type="text"
                     name="director"
                     placeholder="Director"
-                    onChange={props.newMovieInput}
+                    onChange={props.new}
                   />
                 </label>
                 <label>
@@ -37,7 +37,7 @@ const EditMovie = props => {
                     type="number"
                     name="year"
                     placeholder="Year"
-                    onChange={props.newMovieInput}
+                    onChange={props.new}
                   />
                 </label>
                 <label>
@@ -46,7 +46,7 @@ const EditMovie = props => {
                     type="number"
                     name="rating"
                     placeholder="Rating 1-5"
-                    onChange={props.newMovieInput}
+                    onChange={props.new}
                   />
                 </label>
                 <label>
@@ -55,10 +55,10 @@ const EditMovie = props => {
                     type="text"
                     name="poster"
                     placeholder="Url"
-                    onChange={props.newMovieInput}
+                    onChange={props.new}
                   />
                 </label>
-                <button className="addMovieBtn"> Add Movie </button>
+                <button className="addMovieBtn"> Edit Movie </button>
               </form>
             </div>
           </div>

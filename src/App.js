@@ -19,7 +19,8 @@ class App extends Component {
       year: undefined,
       rating: undefined,
       poster: "",
-      selected: undefined
+      selected: undefined,
+      allInputs: false
     };
   }
 
@@ -50,7 +51,7 @@ class App extends Component {
       body: JSON.stringify(newMovie)
     })
       .then(res => res.json())
-      .then(() => this.reload());
+      .then(() => (window.location = "http://localhost:3000/movies"));
   };
 
   newMovieInput = e => {
@@ -58,6 +59,13 @@ class App extends Component {
     this.setState({
       [name]: value
     });
+    if (
+      this.state.title.length > 0 &&
+      this.state.director.length > 0 &&
+      this.state.year > 0
+    ) {
+      this.setState({ allInputs: true });
+    }
   };
 
   deleteMovie = e => {
@@ -83,6 +91,32 @@ class App extends Component {
           selected: undefined
         })
       );
+  };
+  editMovie = e => {
+    if (this.state.allInputs === false) {
+      e.preventDefault();
+      alert("Please fill out all fields");
+    } else {
+      e.preventDefault();
+      const updatedMovie = {
+        title: this.state.title,
+        director: this.state.director,
+        year: this.state.year,
+        rating: this.state.rating,
+        poster_url: this.state.poster_url
+      };
+
+      fetch(`https://movie-crud-project.herokuapp.com/movies/${e.target.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedMovie)
+      })
+        .then(res => res.json())
+        .then(() => this.reload())
+        .then(() => (window.location = "http://localhost:3000/movies"));
+    }
   };
 
   render() {
@@ -121,7 +155,8 @@ class App extends Component {
                 <EditMovie
                   movies={this.state.movies}
                   selected={this.state.selected}
-                  handleSubmit={this.handleSubmit}
+                  editMovie={this.editMovie}
+                  new={this.newMovieInput}
                 />
               )}
             />
